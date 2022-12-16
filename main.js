@@ -3,11 +3,9 @@ db.students.aggregate([                                  //db.collection name.ag
 ]).pretty()
 
 
-
 db.lists.aggregate([
     {$match: {ToDoStatus: "New"}}
 ]).toArray()
-
 
 
 db.lists.aggregate([
@@ -16,11 +14,9 @@ db.lists.aggregate([
 ]).toArray()
 
 
-
 db.students.aggregate([
     {$match: {$or: [{roll: {$gt: 10, $lt: 20}}, {name: "Bulbul"}]}}
 ]).toArray();
-
 
 
 db.students.aggregate([
@@ -28,8 +24,24 @@ db.students.aggregate([
 ]).toArray();
 
 
-
 db.students.aggregate([                                  //db.collection name.aggregate
     {$match: {name: "Bulbul"}},
     {$match: {roll: 47}}
 ]).pretty()
+
+
+db.students.aggregate([]).toArray()
+
+
+db.students.aggregate([
+    {$count: 'total'}
+])
+
+
+db.students.aggregate([{$match: {name: {$in: [/b/]}}}]).toArray()
+
+
+db.students.aggregate([
+    {$match: {name: {$in: [/b/]}}},
+    {$count: 'total'}
+]).toArray()
